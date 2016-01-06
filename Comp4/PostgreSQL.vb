@@ -75,8 +75,29 @@
         If currConn.State = ConnectionState.Open Then
             currConn.Close()
         Else
-            Debug.WriteLine("Tried to close a nonexistent connection! Connection: " & conn.ToString)
+            Debug.WriteLine("Tried to close a nonexistent connection! Connection: " & currConn.ToString)
         End If
+    End Sub
+
+    Public Sub DataOut(ByVal cmdText As String)
+        Dim cmd As Npgsql.NpgsqlCommand
+        Dim retry As Boolean = True
+        Dim resultDialog As Integer
+        cmd = New Npgsql.NpgsqlCommand(cmdText, currConn)
+        While retry
+            Try
+                Debug.WriteLine("Dataout query executed. " & cmd.ExecuteNonQuery() & " rows affected")
+                retry = False
+            Catch ex As Exception
+                resultDialog = MessageBox.Show("There was an error. Please try again.", "Database Query Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                Debug.WriteLine("SQL Dataout error: " & ex.ToString)
+                If resultDialog = DialogResult.Retry Then
+                    retry = True
+                Else
+                    retry = False
+                End If
+            End Try
+        End While
     End Sub
 
 End Class
