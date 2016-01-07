@@ -36,5 +36,9 @@
 #Region "TODO"
 
     'textbox input max length synced With DB
+    'COURSEWORK check ddl
+    'COURSEWORK talk about npgsql
 #End Region
+
+
 End Class

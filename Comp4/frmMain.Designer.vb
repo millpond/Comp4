@@ -35,6 +35,8 @@ Partial Class frmMain
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnAddtoDb = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtUID
@@ -142,11 +144,20 @@ Partial Class frmMain
         Me.btnAddtoDb.Text = "Add to DB"
         Me.btnAddtoDb.UseVisualStyleBackColor = True
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(337, 196)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(310, 230)
+        Me.DataGridView1.TabIndex = 13
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(670, 438)
+        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.btnAddtoDb)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -162,6 +173,7 @@ Partial Class frmMain
         Me.Controls.Add(Me.txtUID)
         Me.Name = "frmMain"
         Me.Text = "Main"
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -180,4 +192,5 @@ Partial Class frmMain
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents btnAddtoDb As Button
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
