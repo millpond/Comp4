@@ -1,5 +1,7 @@
 ﻿Public Class frmMain
 
+#Region "Events"
+
     Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         Me.tbcMaintab.Location = New System.Drawing.Point(12, 12)
         Me.tbcMaintab.Width = Me.Width - 40
@@ -21,13 +23,29 @@
         ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.F AndAlso e.Modifiers = Keys.Control And WindowState = FormWindowState.Normal Then
             WindowState = FormWindowState.Maximized
         End If
+        e.Handled = True
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        KeyPreview = True
+        KeyPreview = True 'Sets form to look for keyinputs (for ctrl-f)
     End Sub
 
+    Private Sub txtSimpleSearch_KeyDown(sender As Object, e As KeyPressEventArgs) Handles txtSimpleSearch.KeyPress
+        If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+            SimpleSearch(txtSimpleSearch.Text)
+            e.Handled = True
+        End If
+    End Sub
 
+#End Region
+
+#Region "Funcs"
+
+    Sub SimpleSearch(searchStr As String)
+
+    End Sub
+
+#End Region
 
 
 
@@ -93,4 +111,7 @@
     '    DataGridView1.DataSource = dt
     'End Function
 
+    Private Sub txtSimpleSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSimpleSearch.TextChanged
+
+    End Sub
 End Class
