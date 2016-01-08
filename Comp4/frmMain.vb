@@ -1,30 +1,30 @@
 ﻿Public Class frmMain
-    Dim curWidth As Integer = Me.Width
-    Dim curHeight As Integer = Me.Height
-    Dim initWidth As Integer
-    Dim initHeight As Integer
-
 
     Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        Me.tbcMaintab.Location = New System.Drawing.Point(12, 12)
+        Me.tbcMaintab.Width = Me.Width - 40
+        Me.tbcMaintab.Height = Me.Height - 62 'TODO: finesse margins
+        If WindowState = FormWindowState.Maximized Then
+            FormBorderStyle = FormBorderStyle.None
+            TopMost = True
+            lblFullscreenInfo.Show()
+        Else
+            FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable
+            TopMost = False
+            lblFullscreenInfo.Hide()
+        End If
+    End Sub
 
-        Dim widthRatio As Double = (Me.Width - initWidth) / curWidth
-        Dim heightRatio As Double = (Me.Height - initHeight) / curHeight
-
-        For Each ctrl In Controls
-            ctrl.Width += CInt(ctrl.Width * widthRatio)
-            ctrl.Height += CInt(ctrl.Height * heightRatio)
-            ctrl.Left += CInt(ctrl.Left * widthRatio)
-            ctrl.Top += CInt(ctrl.Top * heightRatio)
-        Next
-
-        curWidth = Me.Width
-        curHeight = Me.Height
-
+    Private Sub frmMain_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
+        If (e.KeyCode And Not Keys.Modifiers) = Keys.F AndAlso e.Modifiers = Keys.Control And WindowState = FormWindowState.Maximized Then
+            WindowState = FormWindowState.Normal
+        ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.F AndAlso e.Modifiers = Keys.Control And WindowState = FormWindowState.Normal Then
+            WindowState = FormWindowState.Maximized
+        End If
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        initWidth = Me.Width
-        initHeight = Me.Height
+        KeyPreview = True
     End Sub
 
 
