@@ -1,5 +1,5 @@
 ﻿Class PostgreSQL
-    Private connAddress As String = "127.0.0.1"
+    Private connAddress As String = "82.0.147.192"
     Private connPort As String = "5432"
     Private connDatabase As String = ""
     Private connUsername As String = "postgres"
