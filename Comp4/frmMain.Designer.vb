@@ -29,26 +29,26 @@ Partial Class frmMain
         Me.grpViewInfo = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.lblFullscreenInfo = New System.Windows.Forms.Label()
-        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.tabSearch = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.txtSimpleSearch = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnSimpleSearch = New System.Windows.Forms.Button()
+        Me.lblFullscreenInfo = New System.Windows.Forms.Label()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.tbcMaintab.SuspendLayout()
         Me.tabViewer.SuspendLayout()
         Me.tlpViewer.SuspendLayout()
         Me.grpViewInfo.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
+        Me.tabSearch.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'tbcMaintab
         '
         Me.tbcMaintab.Controls.Add(Me.tabViewer)
-        Me.tbcMaintab.Controls.Add(Me.TabPage2)
+        Me.tbcMaintab.Controls.Add(Me.tabSearch)
         Me.tbcMaintab.HotTrack = True
         Me.tbcMaintab.Location = New System.Drawing.Point(12, 12)
         Me.tbcMaintab.Name = "tbcMaintab"
@@ -141,39 +141,16 @@ Partial Class frmMain
         Me.DataGridView1.Size = New System.Drawing.Size(419, 340)
         Me.DataGridView1.TabIndex = 2
         '
-        'TabPage2
+        'tabSearch
         '
-        Me.TabPage2.Controls.Add(Me.TableLayoutPanel3)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(638, 388)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'lblFullscreenInfo
-        '
-        Me.lblFullscreenInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblFullscreenInfo.AutoSize = True
-        Me.lblFullscreenInfo.Location = New System.Drawing.Point(532, 13)
-        Me.lblFullscreenInfo.Name = "lblFullscreenInfo"
-        Me.lblFullscreenInfo.Size = New System.Drawing.Size(120, 13)
-        Me.lblFullscreenInfo.TabIndex = 1
-        Me.lblFullscreenInfo.Text = "Ctrl-F to leave fullscreen"
-        '
-        'TableLayoutPanel2
-        '
-        Me.TableLayoutPanel2.ColumnCount = 2
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(430, 421)
-        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.TableLayoutPanel2.RowCount = 2
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(8, 16)
-        Me.TableLayoutPanel2.TabIndex = 2
+        Me.tabSearch.Controls.Add(Me.TableLayoutPanel3)
+        Me.tabSearch.Location = New System.Drawing.Point(4, 22)
+        Me.tabSearch.Name = "tabSearch"
+        Me.tabSearch.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabSearch.Size = New System.Drawing.Size(638, 388)
+        Me.tabSearch.TabIndex = 1
+        Me.tabSearch.Text = "Search"
+        Me.tabSearch.UseVisualStyleBackColor = True
         '
         'TableLayoutPanel3
         '
@@ -227,6 +204,29 @@ Partial Class frmMain
         Me.btnSimpleSearch.Text = "Search!"
         Me.btnSimpleSearch.UseVisualStyleBackColor = True
         '
+        'lblFullscreenInfo
+        '
+        Me.lblFullscreenInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFullscreenInfo.AutoSize = True
+        Me.lblFullscreenInfo.Location = New System.Drawing.Point(532, 13)
+        Me.lblFullscreenInfo.Name = "lblFullscreenInfo"
+        Me.lblFullscreenInfo.Size = New System.Drawing.Size(120, 13)
+        Me.lblFullscreenInfo.TabIndex = 1
+        Me.lblFullscreenInfo.Text = "Ctrl-F to leave fullscreen"
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(430, 421)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 2
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(8, 16)
+        Me.TableLayoutPanel2.TabIndex = 2
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -244,7 +244,7 @@ Partial Class frmMain
         Me.tlpViewer.PerformLayout()
         Me.grpViewInfo.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage2.ResumeLayout(False)
+        Me.tabSearch.ResumeLayout(False)
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
         Me.ResumeLayout(False)
@@ -253,7 +253,7 @@ Partial Class frmMain
     End Sub
     Friend WithEvents tbcMaintab As System.Windows.Forms.TabControl
     Friend WithEvents tabViewer As System.Windows.Forms.TabPage
-    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents tabSearch As System.Windows.Forms.TabPage
     Friend WithEvents lblFullscreenInfo As System.Windows.Forms.Label
     Friend WithEvents tlpViewer As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents txtFilters As System.Windows.Forms.TextBox
