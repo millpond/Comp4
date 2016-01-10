@@ -32,7 +32,7 @@
 
     Private Sub txtSimpleSearch_KeyDown(sender As Object, e As KeyPressEventArgs) Handles txtSimpleSearch.KeyPress
         If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
-            SimpleSearch(txtSimpleSearch.Text)
+            Dim options As New Options
             e.Handled = True
         End If
     End Sub

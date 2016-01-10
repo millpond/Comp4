@@ -120,8 +120,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Notes.vb" />
+    <Compile Include="Options.vb" />
     <Compile Include="PostgreSQL.vb" />
-    <Compile Include="RandomFunctions.vb" />
+    <Compile Include="UIExtras.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmLogin.resx">

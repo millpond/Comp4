@@ -28,60 +28,49 @@
         Dim borrowNotes As String
     End Structure
 
-    Structure MusicBase
-        Dim musicPieceID As Integer
-        Dim musicType As MusicType
-        Dim musicTitle As String
-        Dim musicComposerSurname As String
-        Dim musicComposerForename As String
-        Dim musicLocation As String
-        Dim musicStatus As MusicStatus
-        Dim musicYearAdded As Integer
-        Dim musicPieceOrigin As String
-        Dim musicCopyNotes As String
-        'Dim musicPurchaseCost As Money
-        'Dim musicReplacementCost As Money TODO: Sort Money voices etc regex
-    End Structure
-
-    Structure MusicChoral
-        'dim choralVoices As voicesRegex
+    Structure MusicPiece
+        Dim basePieceID As Integer
+        Dim baseType As MusicType
+        Dim baseTitle As String
+        Dim baseComposerSurname As String
+        Dim baseComposerForename As String
+        Dim baseLocation As String
+        Dim baseStatus As MusicStatus
+        Dim baseYearAdded As Integer
+        Dim basePieceOrigin As String
+        Dim baseCopyNotes As String
+        Dim basePurchaseCost As Double
+        Dim baseReplacementCost As Double
+        Dim choralVoices As String
         Dim choralNumCopies As Integer
-    End Structure
-
-    Structure MusicOrchestral
-        'Dim orchestralOrchestration As regexhere
-        Dim scoreType As OrchestralScoreType
+        Dim orchScoreType As OrchestralScoreType
+        Dim orchOrchestration As String
     End Structure
 
 #End Region 'TODO: check/sync with cw
 
-    Public Class FinalMusicPiece
-        Property finalMusicBase As MusicBase
-        Property finalMusicChoral As MusicChoral '#idontknowwhatimdoing
-        Property finalMusicOrchestral As MusicOrchestral
-    End Class
-
-    Private musicPieceList As List(Of FinalMusicPiece)
+    Public musicPieceList As List(Of MusicPiece)
 
 #Region "Properties"
 
-    Property PieceList As Integer
-        Get
-            Return musicPieceList(PieceList)
-        End Get
-        Set(value As List(Of MusicFinalPiece))
-
-        End Set
-    End Property
-
 #End Region
 
-    Sub New()
-        musicPieceList = New List(Of MusicFinalPiece)
-        PopulateList(musicPieceList)
+    Sub New(ByVal populate As Boolean)
+        musicPieceList = New List(Of MusicPiece)
+        If populate Then
+            PopulateList(musicPieceList)
+        End If
     End Sub
 
-    Sub PopulateList(ByVal musicPieceList As List(Of MusicFinalPiece))
+    Sub PopulateList(ByVal musicPieceList As List(Of MusicPiece))
 
     End Sub
+
+    Sub SortList()
+
+    End Sub
+
+    Function FilterList(ByVal filters As List(Of String))
+
+    End Function
 End Class
