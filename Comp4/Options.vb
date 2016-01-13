@@ -53,8 +53,8 @@ Public Class Options 'Develop this later
             Next
             options = tempOptions
         Catch ex As Exception
-            Debug.WriteLine("Options read error: " & ex.ToString)
-            UIExtras.ErrorBox("Problem getting options from file.")
+            Debug.WriteLine("Options read error: " & ex.Message.ToString)
+            MsgBox("Problem getting options from file.")
         End Try
 
     End Sub
