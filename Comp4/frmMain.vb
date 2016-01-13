@@ -1,5 +1,7 @@
 ﻿Public Class frmMain
 
+    Public myOptions As New Options
+
 #Region "Events"
 
     Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
@@ -32,7 +34,7 @@
 
     Private Sub txtSimpleSearch_KeyDown(sender As Object, e As KeyPressEventArgs) Handles txtSimpleSearch.KeyPress
         If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
-            Dim options As New Options
+            'Search here
             e.Handled = True
         End If
     End Sub

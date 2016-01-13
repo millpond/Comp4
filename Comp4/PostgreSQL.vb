@@ -1,30 +1,9 @@
 ﻿Class PostgreSQL
-    Private connAddress As String = "82.0.147.192"
-    Private connPort As String = "5432"
+
     Private connDatabase As String = ""
-    Private connUsername As String = "postgres"
-    Private connPassword As String = "password"
     Private currConn As Npgsql.NpgsqlConnection
 
 #Region "Properties"
-
-    Property Address As String
-        Get
-            Return connAddress
-        End Get
-        Set(value As String)
-            connAddress = value
-        End Set
-    End Property
-
-    Property Port As String
-        Get
-            Return connPort
-        End Get
-        Set(value As String)
-            connPort = value
-        End Set
-    End Property
 
     Property Database As String
         Get
@@ -32,24 +11,6 @@
         End Get
         Set(value As String)
             connDatabase = value
-        End Set
-    End Property
-
-    Property Username As String
-        Get
-            Return connUsername
-        End Get
-        Set(value As String)
-            connUsername = value
-        End Set
-    End Property
-
-    Property Password As String
-        Get
-            Return connPassword
-        End Get
-        Set(value As String)
-            connPassword = value
         End Set
     End Property
 
@@ -61,7 +22,7 @@
 
     Public Sub ConnectToDB() 'Opens a connection to the DB, using a connection string made from various properties above
         If currConn.State = ConnectionState.Closed Then
-            Dim connString As String = "Server=" & Address & ";Port=" & Port & ";Database=" & Database & ";User Id=" & Username & ";Password=" & Password & ";" 'Build string
+            Dim connString As String = "Server=" & ConnectionAddress & ";Port=" & frmMain.myOptions & ";Database=" & Database & ";User Id=" & Username & ";Password=" & Password & ";" 'Build string
             currConn.ConnectionString = connString 'Assign string to connection
             Try
                 currConn.Open() 'Main connection open here
