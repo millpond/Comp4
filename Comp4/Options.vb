@@ -5,9 +5,53 @@ Public Class Options 'Develop this later
     Dim options As Dictionary(Of String, Object)
 
     Private connAddress As String
-    Private connPort As String
+    Private connPort As Integer
     Private connUsername As String
     Private connPassword As String
+
+#Region "Properties"
+
+    Property ConnectionAddress As String
+        Get
+            Return connAddress
+        End Get
+        Set(value As String)
+            connAddress = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+    Property ConnectionPort As String
+        Get
+            Return connPort
+        End Get
+        Set(value As String)
+            connPort = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+    Property ConnectionUsername As String
+        Get
+            Return connUsername
+        End Get
+        Set(value As String)
+            connUsername = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+    Property ConnectionPassword As String
+        Get
+            Return connPassword
+        End Get
+        Set(value As String)
+            connPassword = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+#End Region
 
     Sub New()
         options = New Dictionary(Of String, Object)
