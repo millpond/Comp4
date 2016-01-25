@@ -47,7 +47,7 @@
         Dim orchOrchestration As String
     End Structure
 
-#End Region 'TODO: check/sync with cw
+#End Region 'TODO: check/sync with cw. note structure changes
 
     Public musicPieceList As List(Of MusicPiece)
 
@@ -56,10 +56,12 @@
 #End Region
 
     Sub New(ByVal populate As Boolean)
-        musicPieceList = New List(Of MusicPiece)
-        If populate Then
-            PopulateList(musicPieceList)
-        End If
+        Dim musicDataTable As New DataTable
+        frmMain.
+        'musicPieceList = New List(Of MusicPiece)
+        'If populate Then
+        '    PopulateList(musicPieceList)
+        'End If
     End Sub
 
     Sub PopulateList(ByVal musicPieceList As List(Of MusicPiece))
@@ -73,4 +75,5 @@
     Function FilterList(ByVal filters As List(Of String))
 
     End Function
+
 End Class

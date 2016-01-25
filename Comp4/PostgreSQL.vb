@@ -22,7 +22,7 @@
 
     Public Sub ConnectToDB() 'Opens a connection to the DB, using a connection string made from various properties above
         If currConn.State = ConnectionState.Closed Then
-            Dim connString As String = "Server=" & ConnectionAddress & ";Port=" & frmMain.myOptions & ";Database=" & Database & ";User Id=" & Username & ";Password=" & Password & ";" 'Build string
+            Dim connString As String = "Server=" & frmMain.myOptions.ConnectionAddress & ";Port=" & frmMain.myOptions.ConnectionPort & ";Database=" & Database & ";User Id=" & frmMain.myOptions.ConnectionUsername & ";Password=" & frmMain.myOptions.ConnectionPassword & ";" 'Build string
             currConn.ConnectionString = connString 'Assign string to connection
             Try
                 currConn.Open() 'Main connection open here
