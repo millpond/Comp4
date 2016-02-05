@@ -1,4 +1,4 @@
-﻿Class PostgreSQL
+﻿Public Class PostgreSQL
 
     Private connDatabase As String = ""
     Private currConn As Npgsql.NpgsqlConnection

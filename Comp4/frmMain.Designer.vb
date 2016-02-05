@@ -210,9 +210,9 @@ Partial Class frmMain
         Me.lblFullscreenInfo.AutoSize = True
         Me.lblFullscreenInfo.Location = New System.Drawing.Point(532, 13)
         Me.lblFullscreenInfo.Name = "lblFullscreenInfo"
-        Me.lblFullscreenInfo.Size = New System.Drawing.Size(120, 13)
+        Me.lblFullscreenInfo.Size = New System.Drawing.Size(114, 13)
         Me.lblFullscreenInfo.TabIndex = 1
-        Me.lblFullscreenInfo.Text = "Ctrl-F to leave fullscreen"
+        Me.lblFullscreenInfo.Text = "F11 to leave fullscreen"
         '
         'TableLayoutPanel2
         '

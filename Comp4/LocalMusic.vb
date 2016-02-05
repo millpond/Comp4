@@ -57,8 +57,9 @@
 
     Sub New(ByVal populate As Boolean)
         Dim musicDataTable As New DataTable
-        frmMain.
-        'musicPieceList = New List(Of MusicPiece)
+        If populate Then frmMain.mySQL.UpdateTable("music", musicDataTable)
+        'sort out mess, convert types etc.
+        'no idea why his is here musicPieceList = New List(Of MusicPiece)
         'If populate Then
         '    PopulateList(musicPieceList)
         'End If
