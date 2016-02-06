@@ -50,16 +50,16 @@
 #End Region 'TODO: check/sync with cw. note structure changes
 
     Public musicPieceList As List(Of MusicPiece)
-    Public musicDataTable As DataTable
 
 #Region "Properties"
 
 #End Region
 
     Sub New(ByVal populate As Boolean)
-        musicDataTable = New DataTable
-        frmMain.
-        'musicPieceList = New List(Of MusicPiece)
+        Dim musicDataTable As New DataTable
+        If populate Then frmMain.mySQL.UpdateTable("music", musicDataTable)
+        'sort out mess, convert types etc.
+        'no idea why his is here musicPieceList = New List(Of MusicPiece)
         'If populate Then
         '    PopulateList(musicPieceList)
         'End If

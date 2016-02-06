@@ -1,8 +1,9 @@
 ﻿Public Class frmMain
 
-    Public myOptions As New Options
-    Public mySQL As New PostgreSQL
-    Public myLocalMusic As LocalMusic
+    Public myOptions As Options
+    Public mySQL As PostgreSQL
+    Public myMusic As LocalMusic
+    Public myActiveMusic As List(Of LocalMusic.MusicPiece)
 
 #Region "Events"
 
@@ -22,9 +23,9 @@
     End Sub
 
     Private Sub frmMain_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
-        If (e.KeyCode And Not Keys.Modifiers) = Keys.F AndAlso e.Modifiers = Keys.Control And WindowState = FormWindowState.Maximized Then
+        If (e.KeyCode And Not Keys.Modifiers) = Keys.F11 AndAlso e.Modifiers = Keys.Control And WindowState = FormWindowState.Maximized Then
             WindowState = FormWindowState.Normal
-        ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.F AndAlso e.Modifiers = Keys.Control And WindowState = FormWindowState.Normal Then
+        ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.F11 AndAlso e.Modifiers = Keys.Control And WindowState = FormWindowState.Normal Then
             WindowState = FormWindowState.Maximized
         End If
         e.Handled = True
@@ -32,9 +33,10 @@
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True 'Sets form to look for keyinputs (for ctrl-f)
-        mySQL.Database = "musicDB"
-        mySQL.ConnectToDB()
-        mySQL.UpdateTable("musicDB", myLocalMusic.musicDataTable)
+        myOptions = New Options
+        mySQL = New PostgreSQL
+        myMusic = New LocalMusic(True)
+        myActiveMusic = 
     End Sub
 
     Private Sub txtSimpleSearch_KeyDown(sender As Object, e As KeyPressEventArgs) Handles txtSimpleSearch.KeyPress
@@ -119,6 +121,10 @@
     'End Function
 
     Private Sub txtSimpleSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSimpleSearch.TextChanged
+
+    End Sub
+
+    Private Sub lblFullscreenInfo_Click(sender As Object, e As EventArgs) Handles lblFullscreenInfo.Click
 
     End Sub
 End Class
