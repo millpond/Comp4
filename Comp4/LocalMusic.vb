@@ -50,13 +50,14 @@
 #End Region 'TODO: check/sync with cw. note structure changes
 
     Public musicPieceList As List(Of MusicPiece)
+    Public musicDataTable As DataTable
 
 #Region "Properties"
 
 #End Region
 
     Sub New(ByVal populate As Boolean)
-        Dim musicDataTable As New DataTable
+        musicDataTable = New DataTable
         frmMain.
         'musicPieceList = New List(Of MusicPiece)
         'If populate Then

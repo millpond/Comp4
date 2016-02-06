@@ -1,6 +1,8 @@
 ﻿Public Class frmMain
 
     Public myOptions As New Options
+    Public mySQL As New PostgreSQL
+    Public myLocalMusic As LocalMusic
 
 #Region "Events"
 
@@ -30,6 +32,9 @@
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True 'Sets form to look for keyinputs (for ctrl-f)
+        mySQL.Database = "musicDB"
+        mySQL.ConnectToDB()
+        mySQL.UpdateTable("musicDB", myLocalMusic.musicDataTable)
     End Sub
 
     Private Sub txtSimpleSearch_KeyDown(sender As Object, e As KeyPressEventArgs) Handles txtSimpleSearch.KeyPress
