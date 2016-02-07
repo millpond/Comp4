@@ -16,13 +16,21 @@
 
 #End Region
 
-    Public Sub New()
+    Public Sub New(initConnDatabase)
+        Database = initConnDatabase
         currConn = New Npgsql.NpgsqlConnection
+        ConnectToDB()
     End Sub
 
-    Public Sub ConnectToDB() 'Opens a connection to the DB, using a connection string made from various properties above
+    'Opens a connection to the DB, using a connection string made from various properties above
+    Public Sub ConnectToDB()
         If currConn.State = ConnectionState.Closed Then
-            Dim connString As String = "Server=" & frmMain.myOptions.ConnectionAddress & ";Port=" & frmMain.myOptions.ConnectionPort & ";Database=" & Database & ";User Id=" & frmMain.myOptions.ConnectionUsername & ";Password=" & frmMain.myOptions.ConnectionPassword & ";" 'Build string
+            'Build string
+            Dim connString As String = ("Server=" & frmMain.myOptions.ConnectionAddress _
+                & ";Port=" & frmMain.myOptions.ConnectionPort _
+                & ";Database=" & Database _
+                & ";User Id=" & frmMain.myOptions.ConnectionUsername _
+                & ";Password=" & frmMain.myOptions.ConnectionPassword & ";")
             currConn.ConnectionString = connString 'Assign string to connection
             Try
                 currConn.Open() 'Main connection open here
@@ -58,10 +66,12 @@
             cmd = New Npgsql.NpgsqlCommand(cmdText, currConn)
             While retry
                 Try
-                    Debug.WriteLine("Dataout query executed. " & cmd.ExecuteNonQuery() & " rows affected")
+                    Debug.WriteLine("Dataout issue. " & cmd.ExecuteNonQuery() & " rows affectd")
                     retry = False
                 Catch ex As Exception
-                    resultDialog = MessageBox.Show("There was an error. Please try again.", "Database Query Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                    resultDialog = MessageBox.Show(ex, "Database Query Error",
+                                                   MessageBoxButtons.RetryCancel,
+                                                   MessageBoxIcon.Error)
                     Debug.WriteLine("SQL Dataout error: " & ex.ToString)
                     If resultDialog = DialogResult.Retry Then
                         retry = True
@@ -87,7 +97,10 @@
                     Dim dataReader As Npgsql.NpgsqlDataReader = cmd.ExecuteReader()
                     retry = False
                 Catch ex As Exception
-                    resultDialog = MessageBox.Show("There was an error. Please try again.", "Database Query Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                    resultDialog = MessageBox.Show("There was an error. Please try again.",
+                                                   "Database Query Error",
+                                                   MessageBoxButtons.RetryCancel,
+                                                   MessageBoxIcon.Error)
                     Debug.WriteLine("SQL Dataout error: " & ex.ToString)
                     If resultDialog = DialogResult.Retry Then
                         retry = True
@@ -113,7 +126,8 @@
                 If TypeOf (sublistElement) Is String Then
                     workingStr += ("'" & sublistElement.ToString & "'") 'Add the 'quote' marks
                 Else
-                    workingStr += (sublistElement.ToString)  'Integers do not need the 'quote' marks
+                    'Integers do not need the 'quote' marks
+                    workingStr += (sublistElement.ToString)
                 End If
                 If Not sublistElementCount = listLength Then
                     workingStr += (",") 'Add comma if not last element in array
@@ -126,7 +140,8 @@
         Return strList
     End Function
 
-    Public Sub AddToTable(ByVal table As String, ByVal varList As List(Of List(Of Object))) 'Takes data and formats it to proper sql syntax for table insertion.
+    'Takes data and formats it to proper sql syntax for table insertion.
+    Public Sub AddToTable(ByVal table As String, ByVal varList As List(Of List(Of Object)))
         Dim sqlStr As String
         Dim strList As List(Of String)
         Dim listElementCount As Integer = 0

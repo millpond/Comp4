@@ -96,12 +96,14 @@ Public Class Options 'Develop this later
                 If element.Substring(0, 1) = "[" Then
                     i = element.Length
                     i = element.IndexOf("[") 'Mark position of "["
-                    'take substring starting at "[" + 1, of length of the index of "]" - the index of "[" (-1)
+                    'take substring starting at "[" + 1, of length of the index of "]"
+                    'and then - the index of "[" (-1)
                     key = element.Substring(i + 1, element.IndexOf("]") - i - 1)
                     i = element.IndexOf("=") 'Mark position of "="
                     'take substring starting at "=" + 1, of length of the rest of the string
                     value = element.Substring(i + 1, element.Length - i - 1)
-                    value = Replace(value, " ", "") 'Remove any errant spaces the user may have left.
+                    'Remove any errant spaces the user may have left.
+                    value = Replace(value, " ", "")
                     tempOptions.Add(key, value)
                 End If
             Next

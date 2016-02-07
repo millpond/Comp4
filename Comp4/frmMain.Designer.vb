@@ -36,6 +36,8 @@ Partial Class frmMain
         Me.btnSimpleSearch = New System.Windows.Forms.Button()
         Me.lblFullscreenInfo = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnExcelExport = New System.Windows.Forms.Button()
+        Me.btnExcelImport = New System.Windows.Forms.Button()
         Me.tbcMaintab.SuspendLayout()
         Me.tabViewer.SuspendLayout()
         Me.tlpViewer.SuspendLayout()
@@ -160,6 +162,8 @@ Partial Class frmMain
         Me.TableLayoutPanel3.Controls.Add(Me.txtSimpleSearch, 0, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.Label1, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.btnSimpleSearch, 1, 2)
+        Me.TableLayoutPanel3.Controls.Add(Me.btnExcelImport, 0, 3)
+        Me.TableLayoutPanel3.Controls.Add(Me.btnExcelExport, 0, 2)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
@@ -227,6 +231,24 @@ Partial Class frmMain
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(8, 16)
         Me.TableLayoutPanel2.TabIndex = 2
         '
+        'btnExcelExport
+        '
+        Me.btnExcelExport.Location = New System.Drawing.Point(3, 90)
+        Me.btnExcelExport.Name = "btnExcelExport"
+        Me.btnExcelExport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExcelExport.TabIndex = 3
+        Me.btnExcelExport.Text = "Export excel"
+        Me.btnExcelExport.UseVisualStyleBackColor = True
+        '
+        'btnExcelImport
+        '
+        Me.btnExcelImport.Location = New System.Drawing.Point(3, 126)
+        Me.btnExcelImport.Name = "btnExcelImport"
+        Me.btnExcelImport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExcelImport.TabIndex = 4
+        Me.btnExcelImport.Text = "Import excel"
+        Me.btnExcelImport.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -265,5 +287,6 @@ Partial Class frmMain
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents btnSimpleSearch As System.Windows.Forms.Button
-
+    Friend WithEvents btnExcelImport As Button
+    Friend WithEvents btnExcelExport As Button
 End Class

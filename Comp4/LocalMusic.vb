@@ -50,19 +50,17 @@
 #End Region 'TODO: check/sync with cw. note structure changes
 
     Public musicPieceList As List(Of MusicPiece)
+    Public musicDataTable As DataTable
 
 #Region "Properties"
 
 #End Region
 
     Sub New(ByVal populate As Boolean)
-        Dim musicDataTable As New DataTable
-        If populate Then frmMain.mySQL.UpdateTable("music", musicDataTable)
+        musicDataTable = New DataTable
+        If populate Then frmMain.mySQL.UpdateTable("Music", musicDataTable)
         'sort out mess, convert types etc.
-        'no idea why his is here musicPieceList = New List(Of MusicPiece)
-        'If populate Then
-        '    PopulateList(musicPieceList)
-        'End If
+
     End Sub
 
     Sub PopulateList(ByVal musicPieceList As List(Of MusicPiece))
@@ -74,7 +72,7 @@
     End Sub
 
     Function FilterList(ByVal filters As List(Of String))
-
+        Return True
     End Function
 
 End Class
