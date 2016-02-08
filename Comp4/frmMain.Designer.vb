@@ -34,10 +34,10 @@ Partial Class frmMain
         Me.txtSimpleSearch = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnSimpleSearch = New System.Windows.Forms.Button()
+        Me.btnExcelImport = New System.Windows.Forms.Button()
+        Me.btnExcelExport = New System.Windows.Forms.Button()
         Me.lblFullscreenInfo = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btnExcelExport = New System.Windows.Forms.Button()
-        Me.btnExcelImport = New System.Windows.Forms.Button()
         Me.tbcMaintab.SuspendLayout()
         Me.tabViewer.SuspendLayout()
         Me.tlpViewer.SuspendLayout()
@@ -208,6 +208,24 @@ Partial Class frmMain
         Me.btnSimpleSearch.Text = "Search!"
         Me.btnSimpleSearch.UseVisualStyleBackColor = True
         '
+        'btnExcelImport
+        '
+        Me.btnExcelImport.Location = New System.Drawing.Point(3, 126)
+        Me.btnExcelImport.Name = "btnExcelImport"
+        Me.btnExcelImport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExcelImport.TabIndex = 4
+        Me.btnExcelImport.Text = "Import excel"
+        Me.btnExcelImport.UseVisualStyleBackColor = True
+        '
+        'btnExcelExport
+        '
+        Me.btnExcelExport.Location = New System.Drawing.Point(3, 90)
+        Me.btnExcelExport.Name = "btnExcelExport"
+        Me.btnExcelExport.Size = New System.Drawing.Size(75, 23)
+        Me.btnExcelExport.TabIndex = 3
+        Me.btnExcelExport.Text = "Export excel"
+        Me.btnExcelExport.UseVisualStyleBackColor = True
+        '
         'lblFullscreenInfo
         '
         Me.lblFullscreenInfo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -230,24 +248,6 @@ Partial Class frmMain
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(8, 16)
         Me.TableLayoutPanel2.TabIndex = 2
-        '
-        'btnExcelExport
-        '
-        Me.btnExcelExport.Location = New System.Drawing.Point(3, 90)
-        Me.btnExcelExport.Name = "btnExcelExport"
-        Me.btnExcelExport.Size = New System.Drawing.Size(75, 23)
-        Me.btnExcelExport.TabIndex = 3
-        Me.btnExcelExport.Text = "Export excel"
-        Me.btnExcelExport.UseVisualStyleBackColor = True
-        '
-        'btnExcelImport
-        '
-        Me.btnExcelImport.Location = New System.Drawing.Point(3, 126)
-        Me.btnExcelImport.Name = "btnExcelImport"
-        Me.btnExcelImport.Size = New System.Drawing.Size(75, 23)
-        Me.btnExcelImport.TabIndex = 4
-        Me.btnExcelImport.Text = "Import excel"
-        Me.btnExcelImport.UseVisualStyleBackColor = True
         '
         'frmMain
         '

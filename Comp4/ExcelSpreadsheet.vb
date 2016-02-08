@@ -11,6 +11,10 @@ Public Class ExcelSpreadsheet
         'create spreadsheet object
     End Sub
 
+    Public Sub importFromSpreadsheet(ByVal filepath As String)
+
+    End Sub
+
     Public Sub exportToSpreadsheet(ByVal table As DataTable)
         'start excel and get application object
         XLap = CreateObject("Excel.Application")
@@ -76,7 +80,7 @@ Public Class ExcelSpreadsheet
             Next
         Next
         XLsh.Columns.AutoFit()
-        ' Fill C2:C6 with a relative formula (=A2 & " " & B2).
+        'BS below
         XLrg = XLsh.Range("C2", "C6")
         XLrg.Formula = "=A2 & "" "" & B2"
         ' Fill D2:D6 values.

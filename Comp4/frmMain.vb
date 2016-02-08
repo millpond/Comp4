@@ -65,6 +65,13 @@
 
 #End Region
 
+    Private Sub btnExcelImport_Click(sender As Object, e As EventArgs) Handles btnExcelImport.Click
+        Dim chosefile As New frmChoosefile
+        If chosefile.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            chosefile.Dispose()
+            myExcelSpreadsheet.importFromSpreadsheet(chosefile.txtFilepath.Text)
+        End If
+    End Sub
 End Class
 
 
