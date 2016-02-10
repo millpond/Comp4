@@ -12,13 +12,13 @@ Public Class ExcelSpreadsheet
     End Sub
 
     Public Sub importFromSpreadsheet(ByVal filepath As String)
-
+        XLap = CreateObject("Excel.Application")
+        'HER
     End Sub
 
     Public Sub exportToSpreadsheet(ByVal table As DataTable)
         'start excel and get application object
         XLap = CreateObject("Excel.Application")
-        XLap.Visible = False
         'add a new workbook
         XLwb = XLap.Workbooks.Add
         XLsh = XLap.ActiveSheet
@@ -79,23 +79,9 @@ Public Class ExcelSpreadsheet
                 XLsh.Cells(rowIndex + 2, colIndex) = tableDataRow(tableDataColumn.ColumnName)
             Next
         Next
-        XLsh.Columns.AutoFit()
-        'BS below
-        XLrg = XLsh.Range("C2", "C6")
-        XLrg.Formula = "=A2 & "" "" & B2"
-        ' Fill D2:D6 values.
-        With XLsh
-            .Cells(2, 4).Value = "Biology"
-            .Cells(3, 4).Value = "Mathmematics"
-            .Cells(4, 4).Value = "Physics"
-            .Cells(5, 4).Value = "Mathmematics"
-            .Cells(6, 4).Value = "Arabic"
-        End With
-        ' AutoFit columns A:D.
-        XLrg = XLsh.Range("A1", "D1")
+        'Autofit columns
+        XLrg = XLsh.Range("A1", "P1")
         XLrg.EntireColumn.AutoFit()
-        ' Make sure Excel is visible and give the user control
-        ' of Excel's lifetime.
         XLap.Visible = True
         XLap.UserControl = True
         ' Release object references.
@@ -104,8 +90,5 @@ Public Class ExcelSpreadsheet
         XLwb = Nothing
         XLap.Quit()
         XLap = Nothing
-        Exit Sub
-Err_Handler:
-        MsgBox(Err.Description, vbCritical, "Error: " & Err.Number)
     End Sub
 End Class
