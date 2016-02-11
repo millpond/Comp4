@@ -86,10 +86,10 @@ Partial Class frmChoosefile
         Me.Controls.Add(Me.btnBrowse)
         Me.Name = "frmChoosefile"
         Me.Text = "frmChoosefile"
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents btnBrowse As System.Windows.Forms.Button
     Friend WithEvents txtFilepath As System.Windows.Forms.TextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button

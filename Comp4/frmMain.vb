@@ -93,7 +93,7 @@
             'Replace values with enum names
             myActiveMusic.ImportRow(myMusic.musicDataTable.Rows(row))
             Try
-                myActiveMusic.Rows(row)(1) = [Enum].GetName(GetType(LocalMusic.MusicType), 'begin broken code Int(myActiveMusic.Rows(row)(1).value))
+                myActiveMusic.Rows(row)(1) = [Enum].GetName(GetType(LocalMusic.MusicType), Int(myActiveMusic.Rows(row)(1).value))
             Catch ex As Exception
                 Debug.WriteLine(ex)
             End Try
