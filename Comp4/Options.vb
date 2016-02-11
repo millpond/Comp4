@@ -9,6 +9,9 @@ Public Class Options 'Develop this later
     Private connUsername As String
     Private connPassword As String
     Private xlHeaders As String
+    Private enumMusicType As String
+    Private enumMusicStatus As String
+    Private enumScoreType As String
 
 #Region "Properties"
 
@@ -52,7 +55,7 @@ Public Class Options 'Develop this later
         End Set
     End Property
 
-    Public Property ExcelHeaderString As String
+    Public Property HeaderString As String
         Get
             Return xlHeaders
         End Get
@@ -62,26 +65,57 @@ Public Class Options 'Develop this later
         End Set
     End Property
 
-    Public ReadOnly Property ExcelHeaders As List(Of String)
+    Public Property MusicTypeEnumString As String
         Get
-            'Splits up the string we imported from options into a list
-            Dim excelHeaderList As New List(Of String)
-            Dim headerList As String = ExcelHeaderString
-            Dim tempString As String
-            For i = 0 To headerList.Length - 1
-                If Not headerList(i) = "/" Then
-                    If headerList(i) = "_" Then
-                        tempString += " "
-                    Else
-                        tempString += headerList(i)
-                    End If
-                Else
-                    excelHeaderList.Add(tempString)
-                    tempString = ""
-                End If
-            Next
-            excelHeaderList.Add(tempString)
-            Return excelHeaderList
+            Return enumMusicType
+        End Get
+        Set(value As String)
+            enumMusicType = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+    Public Property MusicStatusEnumString As String
+        Get
+            Return enumMusicStatus
+        End Get
+        Set(value As String)
+            enumMusicStatus = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+    Public Property ScoreTypeEnumString As String
+        Get
+            Return enumScoreType
+        End Get
+        Set(value As String)
+            enumScoreType = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+    Public ReadOnly Property Headers As List(Of String)
+        Get
+            Return splitStringIntoList(HeaderString)
+        End Get
+    End Property
+
+    Public ReadOnly Property ScoreTypeEnum As List(Of String)
+        Get
+            Return splitStringIntoList(ScoreTypeEnumString)
+        End Get
+    End Property
+
+    Public ReadOnly Property MusicTypeEnum As List(Of String)
+        Get
+            Return splitStringIntoList(MusicTypeEnumString)
+        End Get
+    End Property
+
+    Public ReadOnly Property MusicStatusEnum As List(Of String)
+        Get
+            Return splitStringIntoList(MusicStatusEnumString)
         End Get
     End Property
 
@@ -146,15 +180,39 @@ Public Class Options 'Develop this later
             Debug.WriteLine("Options read error: " & ex.Message.ToString)
             MsgBox("Problem getting options from file.")
         End Try
-
     End Sub
+
+    ''' <summary>
+    ''' Splits up the string separated by "/" into a list of strings
+    ''' </summary>
+    Function splitStringIntoList(str As String) As List(Of String)
+        Dim stringList As New List(Of String)
+        Dim tempString As String = ""
+        For i = 0 To str.Length - 1
+            If Not str(i) = "/" Then
+                If str(i) = "_" Then 'Replace _ with spaces
+                    tempString += " "
+                Else
+                    tempString += str(i)
+                End If
+            Else
+                stringList.Add(tempString)
+                tempString = ""
+            End If
+        Next
+        stringList.Add(tempString)
+        Return stringList
+    End Function
 
     Sub PopulateNewOptions()
         options.Add("SQL Connection", ConnectionAddress)
         options.Add("SQL Port", ConnectionPort)
         options.Add("SQL Username", ConnectionUsername)
         options.Add("SQL Password", ConnectionPassword)
-        options.Add("Excel Headers", ExcelHeaderString)
+        options.Add("Excel Headers", HeaderString)
+        options.Add("Score Type Enum", ScoreTypeEnumString)
+        options.Add("Music Type Enum", MusicTypeEnumString)
+        options.Add("Music Status Enum", MusicStatusEnumString)
         WriteOptionsToFile()
     End Sub
 
@@ -163,7 +221,10 @@ Public Class Options 'Develop this later
         ConnectionPort = options("SQL Port")
         ConnectionUsername = options("SQL Username")
         ConnectionPassword = options("SQL Password")
-        ExcelHeaderString = options("Excel Headers")
+        HeaderString = options("Table Headers")
+        ScoreTypeEnumString = options("Score Type Enum")
+        MusicTypeEnumString = options("Music Type Enum")
+        MusicStatusEnumString = options("Music Status Enum")
     End Sub
 
 End Class

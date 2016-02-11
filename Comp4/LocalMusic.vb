@@ -1,4 +1,7 @@
-﻿Public Class LocalMusic
+﻿Imports System.ComponentModel
+Imports System.Reflection
+
+Public Class LocalMusic
 
 #Region "Enums/Structs**"
 
@@ -11,7 +14,7 @@
     Enum MusicStatus
         Available
         Reserved
-        OnLoan
+        Loaned
     End Enum
 
     Enum MusicType

@@ -70,11 +70,16 @@
     End Sub
 
     Sub initDataGridView()
-        Dim headers As List(Of String) = myOptions.ExcelHeaders
+        Dim headers As List(Of String) = myOptions.Headers
         prepActiveMusic()
         With dgvMain
             .DataSource = myActiveMusic
-            .Columns(0).Visible = False 'Nobody needs to see that
+            'Hide all columns
+            For i = 0 To .ColumnCount - 1
+                .Columns(i).Visible = False
+            Next
+            .Columns(1).Visible = True
+            'future ben: hide useless columns
             For i = 1 To 16
                 .Columns(i).HeaderText = headers(i - 1)
             Next
@@ -82,6 +87,9 @@
     End Sub
 
     Sub prepActiveMusic()
+        Dim msEnum As List(Of String) = myOptions.MusicStatusEnum
+        Dim mtEnum As List(Of String) = myOptions.MusicTypeEnum
+        Dim stEnum As List(Of String) = myOptions.ScoreTypeEnum
         myActiveMusic = myMusic.musicDataTable.Clone()
         With myActiveMusic
             .Columns(1).DataType = GetType(String)
@@ -90,19 +98,20 @@
         End With
 
         For row = 0 To myMusic.musicDataTable.Rows.Count - 1
-            'Replace values with enum names
+            'import the row
             myActiveMusic.ImportRow(myMusic.musicDataTable.Rows(row))
-            Try
-                myActiveMusic.Rows(row)(1) = [Enum].GetName(GetType(LocalMusic.MusicType), Int(myActiveMusic.Rows(row)(1).value))
-            Catch ex As Exception
-                Debug.WriteLine(ex)
-            End Try
-            'Note to future me - I am trying to replace value with the enum names so it looks okay. I can't seem to refernce the cell though.
-
-            myActiveMusic.Rows(row)(5) = [Enum].GetName(GetType(LocalMusic.MusicStatus), Int(myActiveMusic.Rows(row)(5).value))
-            myActiveMusic.Rows(row)(11) = [Enum].GetName(GetType(LocalMusic.OrchestralScoreType), Int(myActiveMusic.Rows(row)(11).value))
+            'Replace values with enum names
+            myActiveMusic.Rows(row)(1) = mtEnum(Convert.ToInt32(myActiveMusic.Rows(row)(1)))
+            myActiveMusic.Rows(row)(5) = msEnum(Convert.ToInt32(myActiveMusic.Rows(row)(5)))
+            myActiveMusic.Rows(row)(11) = stEnum(Convert.ToInt32(myActiveMusic.Rows(row)(11)))
         Next
+
     End Sub
+
+    Private Sub btnInfo_Click(sender As Object, e As EventArgs) Handles btnInfo.Click
+        tabInfo.SelectTab(0)
+    End Sub
+
 #End Region
 End Class
 

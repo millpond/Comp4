@@ -10,10 +10,13 @@ Public Class ExcelSpreadsheet
 
     Public Sub New()
         'Get list of headers from our options
-        excelHeaderList = frmMain.myOptions.ExcelHeaders
+        excelHeaderList = frmMain.myOptions.Headers
     End Sub
 
-    Public Sub importFromSpreadsheet(ByVal filepath As String)
+    ''' <summary>
+    ''' Attempts to import data from an excel spreadsheet into the main datatable, then compares
+    ''' </summary>    
+    Public Function importFromSpreadsheet(ByVal filepath As String) As DataTable
         Dim tempDataTable As New DataTable
         Dim tempDataRow(15) As String
         Dim copyDataTable As DataTable = frmMain.myMusic.musicDataTable
@@ -21,7 +24,7 @@ Public Class ExcelSpreadsheet
         XLap = CreateObject("Excel.Application")
         XLwb = XLap.Workbooks.Open(filepath)
         XLsh = XLap.ActiveSheet
-        'Set up our temp datatable - deliberately leave out pieceid column
+        'Set up our temp datatable - deliberately leave out pieceid column(0)
         For i = 1 To copyDataTable.Columns.Count - 1
             tempDataTable.Columns.Add(copyDataTable.Columns(i).ToString)
         Next
@@ -32,9 +35,12 @@ Public Class ExcelSpreadsheet
             tempDataTable.Rows.Add(tempDataRow)
             rowIndex += 1
         End While
-        'While
-    End Sub
+        Return tempDataTable
+    End Function
 
+    ''' <summary>
+    ''' Exports the given table to a new spreadsheet and formats nicely
+    ''' </summary>    
     Public Sub exportToSpreadsheet(ByVal table As DataTable)
         Dim tempDataTable As DataTable = table.Copy
         'start excel and get application object
