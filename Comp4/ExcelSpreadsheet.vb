@@ -6,17 +6,37 @@ Public Class ExcelSpreadsheet
     Dim XLwb As Excel.Workbook 'our Excel workbook
     Dim XLsh As Excel.Worksheet 'our Excel worksheet
     Dim XLrg As Excel.Range 'A specific range of cells we may want to work with
+    Dim excelHeaderList As List(Of String)
 
     Public Sub New()
-        'create spreadsheet object
+        'Get list of headers from our options
+        excelHeaderList = frmMain.myOptions.ExcelHeaders
     End Sub
 
     Public Sub importFromSpreadsheet(ByVal filepath As String)
+        Dim tempDataTable As New DataTable
+        Dim tempDataRow(15) As String
+        Dim copyDataTable As DataTable = frmMain.myMusic.musicDataTable
+        Dim rowIndex As Integer = 3
         XLap = CreateObject("Excel.Application")
-        'HER
+        XLwb = XLap.Workbooks.Open(filepath)
+        XLsh = XLap.ActiveSheet
+        'Set up our temp datatable - deliberately leave out pieceid column
+        For i = 1 To copyDataTable.Columns.Count - 1
+            tempDataTable.Columns.Add(copyDataTable.Columns(i).ToString)
+        Next
+        While Not XLsh.Cells(rowIndex, 1).text.ToString = ""
+            For colIndex = 1 To 16
+                tempDataRow(colIndex - 1) = XLsh.Cells(rowIndex, colIndex).value
+            Next
+            tempDataTable.Rows.Add(tempDataRow)
+            rowIndex += 1
+        End While
+        'While
     End Sub
 
     Public Sub exportToSpreadsheet(ByVal table As DataTable)
+        Dim tempDataTable As DataTable = table.Copy
         'start excel and get application object
         XLap = CreateObject("Excel.Application")
         'add a new workbook
@@ -28,7 +48,7 @@ Public Class ExcelSpreadsheet
             .Cells(1, 1).value = "All Music"
             .Cells(1, 10).value = "Orchestral"
             .Cells(1, 13).value = "Choral"
-            .Cells(1, 16).value = "Notes"
+            .Cells(2, 16).value = "Notes"
             .Range(.Cells(1, 1), .Cells(1, 9)).Merge()
             .Range(.Cells(1, 10), .Cells(1, 12)).Merge()
             .Range(.Cells(1, 13), .Cells(1, 15)).Merge()
@@ -43,27 +63,14 @@ Public Class ExcelSpreadsheet
                 .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
             End With
             'now row 2
-            .Cells(2, 1).value = "Type"
-            .Cells(2, 2).value = "Title"
-            .Cells(2, 3).value = "Surname"
-            .Cells(2, 4).value = "Fore Initials"
-            .Cells(2, 5).value = "Status"
-            .Cells(2, 6).value = "Year Added"
-            .Cells(2, 7).value = "Piece Origin"
-            .Cells(2, 8).value = "Purchase Cost"
-            .Cells(2, 9).value = "Replacement Cost"
-            .Cells(2, 10).value = "Orchestration"
-            .Cells(2, 11).value = "Score Type"
-            .Cells(2, 12).value = "Orch Location"
-            .Cells(2, 13).value = "Voices"
-            .Cells(2, 14).value = "No. of Copies"
-            .Cells(2, 15).value = "Choral Location"
-            .Cells(2, 16).value = "Notes"
+            For i = 1 To 16
+                .Cells(2, i) = excelHeaderList(i - 1)
+            Next
             'TODO: potentially add comments
         End With
-        XLap.Visible = True
+
         'Remove PieceID column - unnecessary to user
-        table.Columns.Remove("pieceid")
+        tempDataTable.Columns.Remove("pieceid")
 
         Dim tableDataColumn As DataColumn
         Dim tableDataRow As DataRow
@@ -71,10 +78,10 @@ Public Class ExcelSpreadsheet
         Dim rowIndex As Integer = 0
 
         'Insert datatable data into spreadsheet
-        For Each tableDataRow In table.Rows
+        For Each tableDataRow In tempDataTable.Rows
             rowIndex += 1
             colIndex = 0
-            For Each tableDataColumn In table.Columns
+            For Each tableDataColumn In tempDataTable.Columns
                 colIndex += 1
                 XLsh.Cells(rowIndex + 2, colIndex) = tableDataRow(tableDataColumn.ColumnName)
             Next

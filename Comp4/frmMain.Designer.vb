@@ -28,7 +28,7 @@ Partial Class frmMain
         Me.txtFilters = New System.Windows.Forms.TextBox()
         Me.grpViewInfo = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dgvMain = New System.Windows.Forms.DataGridView()
         Me.tabSearch = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.txtSimpleSearch = New System.Windows.Forms.TextBox()
@@ -42,7 +42,7 @@ Partial Class frmMain
         Me.tabViewer.SuspendLayout()
         Me.tlpViewer.SuspendLayout()
         Me.grpViewInfo.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabSearch.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
@@ -76,7 +76,7 @@ Partial Class frmMain
         Me.tlpViewer.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.59494!))
         Me.tlpViewer.Controls.Add(Me.txtFilters, 0, 0)
         Me.tlpViewer.Controls.Add(Me.grpViewInfo, 1, 1)
-        Me.tlpViewer.Controls.Add(Me.DataGridView1, 0, 1)
+        Me.tlpViewer.Controls.Add(Me.dgvMain, 0, 1)
         Me.tlpViewer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tlpViewer.Location = New System.Drawing.Point(3, 3)
         Me.tlpViewer.Name = "tlpViewer"
@@ -134,14 +134,17 @@ Partial Class frmMain
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(195, 321)
         Me.TableLayoutPanel1.TabIndex = 0
         '
-        'DataGridView1
+        'dgvMain
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 39)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(419, 340)
-        Me.DataGridView1.TabIndex = 2
+        Me.dgvMain.AllowUserToAddRows = False
+        Me.dgvMain.AllowUserToDeleteRows = False
+        Me.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvMain.Location = New System.Drawing.Point(3, 39)
+        Me.dgvMain.Name = "dgvMain"
+        Me.dgvMain.ReadOnly = True
+        Me.dgvMain.Size = New System.Drawing.Size(419, 340)
+        Me.dgvMain.TabIndex = 2
         '
         'tabSearch
         '
@@ -265,7 +268,7 @@ Partial Class frmMain
         Me.tlpViewer.ResumeLayout(False)
         Me.tlpViewer.PerformLayout()
         Me.grpViewInfo.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabSearch.ResumeLayout(False)
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
@@ -281,7 +284,7 @@ Partial Class frmMain
     Friend WithEvents txtFilters As System.Windows.Forms.TextBox
     Friend WithEvents grpViewInfo As System.Windows.Forms.GroupBox
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvMain As System.Windows.Forms.DataGridView
     Friend WithEvents TableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents txtSimpleSearch As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label

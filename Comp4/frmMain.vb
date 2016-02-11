@@ -3,7 +3,7 @@
     Public myOptions As Options
     Public mySQL As PostgreSQL
     Public myMusic As LocalMusic
-    Public myActiveMusic As List(Of LocalMusic.MusicPiece)
+    Public myActiveMusic As DataTable
     Public myExcelSpreadsheet As ExcelSpreadsheet
 
 #Region "Events"
@@ -33,13 +33,13 @@
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        KeyPreview = True 'Sets form to look for keyinputs (for ctrl-f)
+        KeyPreview = True 'Sets form to look for keyinputs (for fullscreen)
         myOptions = New Options
         mySQL = New PostgreSQL("musicDB")
         myMusic = New LocalMusic(True)
-        myActiveMusic = New List(Of LocalMusic.MusicPiece)
+        myActiveMusic = New DataTable
         myExcelSpreadsheet = New ExcelSpreadsheet
-        myActiveMusic = myMusic.musicPieceList
+        initDataGridView()
     End Sub
 
     Private Sub txtSimpleSearch_KeyDown(sender As Object, e As KeyPressEventArgs) _
@@ -55,6 +55,12 @@
         myExcelSpreadsheet.exportToSpreadsheet(myMusic.musicDataTable)
     End Sub
 
+    Private Sub btnExcelImport_Click(sender As Object, e As EventArgs) Handles btnExcelImport.Click
+        Dim chosefile As New frmChoosefile
+        If chosefile.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            chosefile.Dispose()
+        End If
+    End Sub
 #End Region
 
 #Region "Funcs"
@@ -63,15 +69,41 @@
 
     End Sub
 
-#End Region
-
-    Private Sub btnExcelImport_Click(sender As Object, e As EventArgs) Handles btnExcelImport.Click
-        Dim chosefile As New frmChoosefile
-        If chosefile.ShowDialog() = Windows.Forms.DialogResult.OK Then
-            chosefile.Dispose()
-            myExcelSpreadsheet.importFromSpreadsheet(chosefile.txtFilepath.Text)
-        End If
+    Sub initDataGridView()
+        Dim headers As List(Of String) = myOptions.ExcelHeaders
+        prepActiveMusic()
+        With dgvMain
+            .DataSource = myActiveMusic
+            .Columns(0).Visible = False 'Nobody needs to see that
+            For i = 1 To 16
+                .Columns(i).HeaderText = headers(i - 1)
+            Next
+        End With
     End Sub
+
+    Sub prepActiveMusic()
+        myActiveMusic = myMusic.musicDataTable.Clone()
+        With myActiveMusic
+            .Columns(1).DataType = GetType(String)
+            .Columns(5).DataType = GetType(String)
+            .Columns(11).DataType = GetType(String)
+        End With
+
+        For row = 0 To myMusic.musicDataTable.Rows.Count - 1
+            'Replace values with enum names
+            myActiveMusic.ImportRow(myMusic.musicDataTable.Rows(row))
+            Try
+                myActiveMusic.Rows(row)(1) = [Enum].GetName(GetType(LocalMusic.MusicType), 'begin broken code Int(myActiveMusic.Rows(row)(1).value))
+            Catch ex As Exception
+                Debug.WriteLine(ex)
+            End Try
+            'Note to future me - I am trying to replace value with the enum names so it looks okay. I can't seem to refernce the cell though.
+
+            myActiveMusic.Rows(row)(5) = [Enum].GetName(GetType(LocalMusic.MusicStatus), Int(myActiveMusic.Rows(row)(5).value))
+            myActiveMusic.Rows(row)(11) = [Enum].GetName(GetType(LocalMusic.OrchestralScoreType), Int(myActiveMusic.Rows(row)(11).value))
+        Next
+    End Sub
+#End Region
 End Class
 
 

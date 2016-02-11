@@ -8,6 +8,7 @@ Public Class Options 'Develop this later
     Private connPort As Integer
     Private connUsername As String
     Private connPassword As String
+    Private xlHeaders As String
 
 #Region "Properties"
 
@@ -49,6 +50,39 @@ Public Class Options 'Develop this later
             connPassword = value
             WriteOptionsToFile()
         End Set
+    End Property
+
+    Public Property ExcelHeaderString As String
+        Get
+            Return xlHeaders
+        End Get
+        Set(value As String)
+            xlHeaders = value
+            WriteOptionsToFile()
+        End Set
+    End Property
+
+    Public ReadOnly Property ExcelHeaders As List(Of String)
+        Get
+            'Splits up the string we imported from options into a list
+            Dim excelHeaderList As New List(Of String)
+            Dim headerList As String = ExcelHeaderString
+            Dim tempString As String
+            For i = 0 To headerList.Length - 1
+                If Not headerList(i) = "/" Then
+                    If headerList(i) = "_" Then
+                        tempString += " "
+                    Else
+                        tempString += headerList(i)
+                    End If
+                Else
+                    excelHeaderList.Add(tempString)
+                    tempString = ""
+                End If
+            Next
+            excelHeaderList.Add(tempString)
+            Return excelHeaderList
+        End Get
     End Property
 
 #End Region
@@ -94,7 +128,6 @@ Public Class Options 'Develop this later
         Try
             For Each element In initWriteList
                 If element.Substring(0, 1) = "[" Then
-                    i = element.Length
                     i = element.IndexOf("[") 'Mark position of "["
                     'take substring starting at "[" + 1, of length of the index of "]"
                     'and then - the index of "[" (-1)
@@ -121,6 +154,7 @@ Public Class Options 'Develop this later
         options.Add("SQL Port", ConnectionPort)
         options.Add("SQL Username", ConnectionUsername)
         options.Add("SQL Password", ConnectionPassword)
+        options.Add("Excel Headers", ExcelHeaderString)
         WriteOptionsToFile()
     End Sub
 
@@ -129,6 +163,7 @@ Public Class Options 'Develop this later
         ConnectionPort = options("SQL Port")
         ConnectionUsername = options("SQL Username")
         ConnectionPassword = options("SQL Password")
+        ExcelHeaderString = options("Excel Headers")
     End Sub
 
 End Class
