@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmChoosefile
+Partial Class frmImport
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -25,7 +25,7 @@ Partial Class frmChoosefile
         Me.btnBrowse = New System.Windows.Forms.Button()
         Me.txtFilepath = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnLoad = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
@@ -55,14 +55,14 @@ Partial Class frmChoosefile
         Me.Button2.Text = "Done"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnLoad
         '
-        Me.Button1.Location = New System.Drawing.Point(216, 10)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Load"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnLoad.Location = New System.Drawing.Point(216, 10)
+        Me.btnLoad.Name = "btnLoad"
+        Me.btnLoad.Size = New System.Drawing.Size(75, 23)
+        Me.btnLoad.TabIndex = 3
+        Me.btnLoad.Text = "Load"
+        Me.btnLoad.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
@@ -74,17 +74,17 @@ Partial Class frmChoosefile
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'frmChoosefile
+        'frmImport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(794, 471)
         Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnLoad)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.txtFilepath)
         Me.Controls.Add(Me.btnBrowse)
-        Me.Name = "frmChoosefile"
+        Me.Name = "frmImport"
         Me.Text = "frmChoosefile"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -93,6 +93,6 @@ Partial Class frmChoosefile
     Friend WithEvents btnBrowse As System.Windows.Forms.Button
     Friend WithEvents txtFilepath As System.Windows.Forms.TextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnLoad As Button
     Friend WithEvents btnCancel As Button
 End Class

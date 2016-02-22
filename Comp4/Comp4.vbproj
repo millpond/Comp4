@@ -90,10 +90,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cryptography.vb" />
-    <Compile Include="frmChoosefile.Designer.vb">
-      <DependentUpon>frmChoosefile.vb</DependentUpon>
+    <Compile Include="frmImport.Designer.vb">
+      <DependentUpon>frmImport.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmChoosefile.vb">
+    <Compile Include="frmImport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.vb">
@@ -110,6 +110,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LocalMusic.vb" />
+    <Compile Include="MusicPiece.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -131,8 +132,8 @@
     <Compile Include="ExcelSpreadsheet.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmChoosefile.resx">
-      <DependentUpon>frmChoosefile.vb</DependentUpon>
+    <EmbeddedResource Include="frmImport.resx">
+      <DependentUpon>frmImport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>

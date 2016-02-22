@@ -30,6 +30,7 @@ Partial Class frmMain
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.btnTableEdit = New System.Windows.Forms.Button()
         Me.btnInfo = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.tabSearch = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.txtSimpleSearch = New System.Windows.Forms.TextBox()
@@ -40,14 +41,19 @@ Partial Class frmMain
         Me.lblFullscreenInfo = New System.Windows.Forms.Label()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.grpPieceInfo = New System.Windows.Forms.GroupBox()
+        Me.tlpPieceInfo = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.tbcMaintab.SuspendLayout()
         Me.tabViewer.SuspendLayout()
         Me.tlpViewer.SuspendLayout()
         CType(Me.dgvMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel2.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.tabSearch.SuspendLayout()
         Me.TableLayoutPanel3.SuspendLayout()
+        Me.grpPieceInfo.SuspendLayout()
+        Me.tlpPieceInfo.SuspendLayout()
         Me.SuspendLayout()
         '
         'tbcMaintab
@@ -170,6 +176,19 @@ Partial Class frmMain
         Me.btnInfo.Text = "Piece Info"
         Me.btnInfo.UseVisualStyleBackColor = False
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.grpPieceInfo, 0, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(428, 39)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(201, 340)
+        Me.TableLayoutPanel1.TabIndex = 5
+        '
         'tabSearch
         '
         Me.tabSearch.Controls.Add(Me.TableLayoutPanel3)
@@ -283,17 +302,55 @@ Partial Class frmMain
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'TableLayoutPanel1
+        'grpPieceInfo
         '
-        Me.TableLayoutPanel1.ColumnCount = 1
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(428, 39)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(201, 340)
-        Me.TableLayoutPanel1.TabIndex = 5
+        Me.grpPieceInfo.Controls.Add(Me.tlpPieceInfo)
+        Me.grpPieceInfo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpPieceInfo.Location = New System.Drawing.Point(3, 3)
+        Me.grpPieceInfo.Name = "grpPieceInfo"
+        Me.grpPieceInfo.Size = New System.Drawing.Size(195, 334)
+        Me.grpPieceInfo.TabIndex = 0
+        Me.grpPieceInfo.TabStop = False
+        Me.grpPieceInfo.Text = "Piece Info"
+        '
+        'tlpPieceInfo
+        '
+        Me.tlpPieceInfo.ColumnCount = 2
+        Me.tlpPieceInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpPieceInfo.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.tlpPieceInfo.Controls.Add(Me.Label2, 0, 0)
+        Me.tlpPieceInfo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tlpPieceInfo.Location = New System.Drawing.Point(3, 16)
+        Me.tlpPieceInfo.Name = "tlpPieceInfo"
+        Me.tlpPieceInfo.RowCount = 15
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.tlpPieceInfo.Size = New System.Drawing.Size(189, 315)
+        Me.tlpPieceInfo.TabIndex = 1
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label2.Location = New System.Drawing.Point(3, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(88, 20)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "Title:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmMain
         '
@@ -311,9 +368,13 @@ Partial Class frmMain
         Me.tlpViewer.PerformLayout()
         CType(Me.dgvMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.tabSearch.ResumeLayout(False)
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TableLayoutPanel3.PerformLayout()
+        Me.grpPieceInfo.ResumeLayout(False)
+        Me.tlpPieceInfo.ResumeLayout(False)
+        Me.tlpPieceInfo.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -337,4 +398,7 @@ Partial Class frmMain
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents grpPieceInfo As GroupBox
+    Friend WithEvents tlpPieceInfo As TableLayoutPanel
+    Friend WithEvents Label2 As Label
 End Class

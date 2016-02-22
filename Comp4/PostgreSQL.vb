@@ -49,7 +49,7 @@
         End If
     End Sub
 
-    Private Function checkDbStatus() As Boolean 'Checks to make sure the server isnt too busy - wouldnt want to inconvenience it
+    Private Function checkDbStatus() As Boolean 'Checks to make sure the server isnt too busy
         If currConn.FullState = ConnectionState.Open Then
             Return True
         Else
@@ -57,7 +57,7 @@
         End If
     End Function
 
-    'Sends SQL Database A Non-query request. I.E. Puts data in, and gets nothing out.
+    'Sends SQL Database A Non-query request. I.E. Puts data in, and expects to get nothing out.
     Private Sub DataOut(ByVal cmdText As String)
         If checkDbStatus() Then
             Dim cmd As Npgsql.NpgsqlCommand
@@ -66,7 +66,7 @@
             cmd = New Npgsql.NpgsqlCommand(cmdText, currConn)
             While retry
                 Try
-                    Debug.WriteLine("Dataout issue. " & cmd.ExecuteNonQuery() & " rows affectd")
+                    Debug.WriteLine("Dataout issue. " & cmd.ExecuteNonQuery() & " rows affectd") 'TODO: Check that when properly compiled this will still work
                     retry = False
                 Catch ex As Exception
                     resultDialog = MessageBox.Show(ex, "Database Query Error",

@@ -56,11 +56,12 @@
     End Sub
 
     Private Sub btnExcelImport_Click(sender As Object, e As EventArgs) Handles btnExcelImport.Click
-        Dim chosefile As New frmChoosefile
-        If chosefile.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        Dim chosefile As New frmImport
+        If chosefile.ShowDialog() = DialogResult.OK Then
             chosefile.Dispose()
         End If
     End Sub
+
 #End Region
 
 #Region "Funcs"
@@ -109,7 +110,7 @@
     End Sub
 
     Private Sub btnInfo_Click(sender As Object, e As EventArgs) Handles btnInfo.Click
-        tabInfo.SelectTab(0)
+
     End Sub
 
 #End Region

@@ -44,6 +44,8 @@ Public Class LocalMusic
         Dim baseCopyNotes As String
         Dim basePurchaseCost As Double
         Dim baseReplacementCost As Double
+        Dim baseTags As List(Of String)
+        Dim baseDateEdited As Integer
         Dim choralVoices As String
         Dim choralNumCopies As Integer
         Dim orchScoreType As OrchestralScoreType
@@ -54,10 +56,6 @@ Public Class LocalMusic
 
     Public musicPieceList As List(Of MusicPiece)
     Public musicDataTable As DataTable
-
-#Region "Properties"
-
-#End Region
 
     Sub New(ByVal populate As Boolean)
         musicDataTable = New DataTable
