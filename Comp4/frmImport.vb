@@ -1,7 +1,7 @@
 ﻿Public Class frmImport
 
     Dim newDT, leftDT, rightDT As New DataTable
-    Dim currentIDs, newIDs, bothIDs As New List(Of Integer)
+    Dim currentIDs, newIDs, editedIDs As New List(Of Integer)
 
     Private Sub frmImport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dgvLeft.DataSource = leftDT
@@ -33,13 +33,16 @@
         For i = 0 To currentIDs.Count - 1
             For j = 0 To newIDs.Count - 1
                 If currentIDs(i) = newIDs(j) Then
-                    bothIDs.Add(newIDs(j))
+                    If newDT.Rows(i)(11) = frmMain.myMusic.musicDataTable.Rows(i)(11) Then
+                        editedIDs.Add(i)
+                    End If
                     currentIDs(i) = -1 'mark for deletion
                     newIDs.RemoveAt(j)
                 End If
             Next
         Next
-        'now delete relic entries
+
+        'now delete negative entries
         currentIDs.RemoveAll(Function(i)
                                  Return (i < 0)
                              End Function)
@@ -55,7 +58,7 @@
             rightDT.ImportRow(newDT.Rows(currentIDs(i)))
         Next
 
-        'Future Ben - no way to tell when importing what entries have been changed, cause date edited will be the same. Maybe use formulas or something?
+        'Future Ben - three lists of ids - now to compare them correctly
     End Sub
 
     Function getIDList(ByVal dt As DataTable) As List(Of Integer)
