@@ -8,6 +8,16 @@
 
 #Region "Events"
 
+    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        KeyPreview = True 'Sets form to look for keyinputs (for fullscreen)
+        myOptions = New Options
+        mySQL = New PostgreSQL("musicDB")
+        myMusic = New LocalMusic()
+        myActiveMusic = New DataTable
+        myExcelSpreadsheet = New ExcelSpreadsheet
+        initDataGridView()
+    End Sub
+
     Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         Me.tbcMaintab.Location = New Point(12, 12)
         Me.tbcMaintab.Width = Me.Width - 40
@@ -30,16 +40,6 @@
             WindowState = FormWindowState.Maximized
         End If
         e.Handled = True
-    End Sub
-
-    Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        KeyPreview = True 'Sets form to look for keyinputs (for fullscreen)
-        myOptions = New Options
-        mySQL = New PostgreSQL("musicDB")
-        myMusic = New LocalMusic(True)
-        myActiveMusic = New DataTable
-        myExcelSpreadsheet = New ExcelSpreadsheet
-        initDataGridView()
     End Sub
 
     Private Sub txtSimpleSearch_KeyDown(sender As Object, e As KeyPressEventArgs) _
@@ -81,7 +81,7 @@
             Next
             .Columns(1).Visible = True
             'future ben: hide useless columns
-            For i = 1 To 16
+            For i = 1 To 18
                 .Columns(i).HeaderText = headers(i - 1)
             Next
         End With
@@ -95,7 +95,7 @@
         With myActiveMusic
             .Columns(1).DataType = GetType(String)
             .Columns(5).DataType = GetType(String)
-            .Columns(11).DataType = GetType(String)
+            .Columns(13).DataType = GetType(String)
         End With
 
         For row = 0 To myMusic.musicDataTable.Rows.Count - 1
@@ -104,7 +104,7 @@
             'Replace values with enum names
             myActiveMusic.Rows(row)(1) = mtEnum(Convert.ToInt32(myActiveMusic.Rows(row)(1)))
             myActiveMusic.Rows(row)(5) = msEnum(Convert.ToInt32(myActiveMusic.Rows(row)(5)))
-            myActiveMusic.Rows(row)(11) = stEnum(Convert.ToInt32(myActiveMusic.Rows(row)(11)))
+            myActiveMusic.Rows(row)(13) = stEnum(Convert.ToInt32(myActiveMusic.Rows(row)(13)))
         Next
 
     End Sub

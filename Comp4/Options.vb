@@ -185,7 +185,7 @@ Public Class Options 'Develop this later
     ''' <summary>
     ''' Splits up the string separated by "/" into a list of strings
     ''' </summary>
-    Function splitStringIntoList(str As String) As List(Of String)
+    Public Function splitStringIntoList(str As String) As List(Of String)
         Dim stringList As New List(Of String)
         Dim tempString As String = ""
         For i = 0 To str.Length - 1

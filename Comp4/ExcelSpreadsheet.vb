@@ -18,19 +18,18 @@ Public Class ExcelSpreadsheet
     ''' </summary>    
     Public Function importFromSpreadsheet(ByVal filepath As String) As DataTable
         Dim tempDataTable As New DataTable
-        Dim tempDataRow(15) As String
-        Dim copyDataTable As DataTable = frmMain.myMusic.musicDataTable
+        Dim tempDataRow As New List(Of String)
         Dim rowIndex As Integer = 3
         XLap = CreateObject("Excel.Application")
         XLwb = XLap.Workbooks.Open(filepath)
         XLsh = XLap.ActiveSheet
         'Set up our temp datatable - deliberately leave out pieceid column(0)
-        For i = 1 To copyDataTable.Columns.Count - 1
-            tempDataTable.Columns.Add(copyDataTable.Columns(i).ToString)
+        For i = 0 To frmMain.myMusic.musicDataTable.Columns.Count - 1
+            tempDataTable.Columns.Add(frmMain.myMusic.musicDataTable.Columns(i).ColumnName)
         Next
         While Not XLsh.Cells(rowIndex, 1).text.ToString = ""
-            For colIndex = 1 To 16
-                tempDataRow(colIndex - 1) = XLsh.Cells(rowIndex, colIndex).value
+            For colIndex = 0 To numHeaders
+                tempDataRow.Add(XLsh.Cells(rowIndex, colIndex + 1).value)
             Next
             tempDataTable.Rows.Add(tempDataRow)
             rowIndex += 1
@@ -69,17 +68,12 @@ Public Class ExcelSpreadsheet
                 .HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
             End With
             'now row 2
-            For i = 1 To 16
-                .Cells(2, i) = excelHeaderList(i - 1)
+            For i = 0 To numHeaders
+                .Cells(2, i + 1) = excelHeaderList(i)
             Next
             'TODO: potentially add comments
         End With
 
-        'Remove PieceID column - unnecessary to user
-        tempDataTable.Columns.Remove("pieceid")
-
-        Dim tableDataColumn As DataColumn
-        Dim tableDataRow As DataRow
         Dim colIndex As Integer = 0
         Dim rowIndex As Integer = 0
 
@@ -101,7 +95,7 @@ Public Class ExcelSpreadsheet
         XLrg = Nothing
         XLsh = Nothing
         XLwb = Nothing
-        XLap.Quit()
+        XLap.Quit() 'TODO: Check why excel immediately wants to quit
         XLap = Nothing
     End Sub
 End Class

@@ -83,7 +83,7 @@
         End If
     End Sub
 
-    Public Sub UpdateTable(ByVal tableName As String, ByRef table As DataTable)
+    Public Sub RetrieveTable(ByVal tableName As String, ByRef table As DataTable)
         If checkDbStatus() Then
             Dim cmd As Npgsql.NpgsqlCommand
             Dim retry As Boolean = True
