@@ -1,21 +1,20 @@
 ﻿Public Class frmMain
 
-    Public myOptions As Options
-    Public mySQL As PostgreSQL
-    Public myMusic As LocalMusic
-    Public myActiveMusic As DataTable
-    Public myExcelSpreadsheet As ExcelSpreadsheet
-
 #Region "Events"
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        KeyPreview = True 'Sets form to look for keyinputs (for fullscreen)
-        myOptions = New Options
-        mySQL = New PostgreSQL("musicDB")
-        myMusic = New LocalMusic()
-        myActiveMusic = New DataTable
-        myExcelSpreadsheet = New ExcelSpreadsheet
-        initDataGridView()
+        Try
+            KeyPreview = True 'Sets form to look for keyinputs (for fullscreen)
+            myOptions = New Options
+            mySQL = New PostgreSQL("musicDB")
+            myMusic = New LocalMusic()
+            myActiveMusic = New DataTable
+            myExcelSpreadsheet = New ExcelSpreadsheet
+            initDataGridView()
+        Catch ex As Exception
+            MsgBox("Startup Error!")
+        End Try
+
     End Sub
 
     Private Sub frmMain_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
@@ -106,10 +105,6 @@
             myActiveMusic.Rows(row)(5) = msEnum(Convert.ToInt32(myActiveMusic.Rows(row)(5)))
             myActiveMusic.Rows(row)(13) = stEnum(Convert.ToInt32(myActiveMusic.Rows(row)(13)))
         Next
-
-    End Sub
-
-    Private Sub btnInfo_Click(sender As Object, e As EventArgs) Handles btnInfo.Click
 
     End Sub
 

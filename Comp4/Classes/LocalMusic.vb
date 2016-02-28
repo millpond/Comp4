@@ -3,9 +3,9 @@
     Public musicDataTable As DataTable
 
     Sub New()
-        Dim headers As List(Of String) = frmMain.myOptions.Headers
+        Dim headers As List(Of String) = myOptions.Headers
         musicDataTable = New DataTable
-        frmMain.mySQL.RetrieveTable("Music", musicDataTable)
+        mySQL.RetrieveTable("Music", musicDataTable)
         musicDataTable.Columns(0).Unique = True
         musicDataTable.PrimaryKey = New DataColumn() {musicDataTable.Columns(0)}
         For i = 0 To 18
@@ -52,10 +52,14 @@
         Return rowsList
     End Function
 
-    Sub updateDateEdited(ByVal row As Integer)
-        musicDataTable.Rows(row)(11) = Date.Now
+    Sub updateDateEdited(ByVal rowID As Integer)
+        musicDataTable.Rows.Find(rowID)(11) = Date.Now
     End Sub
 
+    Sub sync()
+        mySQL.SendTable("Music", musicDataTable)
+        mySQL.RetrieveTable("Music", musicDataTable)
+    End Sub
     Function quicksort(ByVal drArray As List(Of DataRow)) As List(Of DataRow)
         If drArray.Count <= 1 Then Return drArray
         Dim pivot As Integer = drArray(drArray.Count / 2)(0)
@@ -73,4 +77,5 @@
         Next
         Return New List(Of DataRow)(less.Concat(more))
     End Function
+
 End Class

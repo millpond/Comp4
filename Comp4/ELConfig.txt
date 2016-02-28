@@ -1,0 +1,8 @@
+[SQL Connection] = 127.0.0.1
+[SQL Port] = 5432
+[SQL Username] = postgres
+[SQL Password] = password
+[Table Headers] = PieceID/Type/Title/Surname/Fore_Initals/Status/Year_Added/Piece_Origin/Purchase_Cost/Replacement_Cost/Tags/Date_Edited/Orchestration/Score_Type/Orch_Location/Voices/No._of_Copies/Choral_Location/Notes
+[Score Type Enum] = Full_Score/Mini_Score/Piano_And_Conductor_Only
+[Music Type Enum] = Orchestral/Choral/Both
+[Music Status Enum] = Available/Reserved/On_Loan

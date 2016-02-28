@@ -26,11 +26,11 @@
     Public Sub ConnectToDB()
         If currConn.State = ConnectionState.Closed Then
             'Build string
-            Dim connString As String = ("Server=" & frmMain.myOptions.ConnectionAddress _
-                & ";Port=" & frmMain.myOptions.ConnectionPort _
+            Dim connString As String = ("Server=" & myOptions.ConnectionAddress _
+                & ";Port=" & myOptions.ConnectionPort _
                 & ";Database=" & Database _
-                & ";User Id=" & frmMain.myOptions.ConnectionUsername _
-                & ";Password=" & frmMain.myOptions.ConnectionPassword & ";")
+                & ";User Id=" & myOptions.ConnectionUsername _
+                & ";Password=" & myOptions.ConnectionPassword & ";")
             currConn.ConnectionString = connString 'Assign string to connection
             Try
                 currConn.Open() 'Main connection open here
@@ -50,7 +50,7 @@
     End Sub
 
     Private Function checkDbStatus() As Boolean 'Checks to make sure the server isnt too busy
-        If currConn.FullState = ConnectionState.Open Then
+        If currConn.State = ConnectionState.Open Then
             Return True
         Else
             Return False 'TODO: Maybe have a timeout/loading func here
@@ -66,7 +66,7 @@
             cmd = New Npgsql.NpgsqlCommand(cmdText, currConn)
             While retry
                 Try
-                    Debug.WriteLine("Dataout issue. " & cmd.ExecuteNonQuery() & " rows affectd") 'TODO: Check that when properly compiled this will still work
+                    cmd.ExecuteNonQuery() 'Send it
                     retry = False
                 Catch ex As Exception
                     resultDialog = MessageBox.Show(ex, "Database Query Error",
@@ -102,6 +102,36 @@
                                                    MessageBoxButtons.RetryCancel,
                                                    MessageBoxIcon.Error)
                     Debug.WriteLine("SQL Dataout error: " & ex.ToString)
+                    If resultDialog = DialogResult.Retry Then
+                        retry = True
+                    Else
+                        retry = False
+                    End If
+                End Try
+            End While
+        End If
+    End Sub
+
+    Public Sub SendTable(ByVal tableName As String, ByRef table As DataTable)
+        If checkDbStatus() Then
+            Dim retry As Boolean = True
+            Dim resultDialog As Integer
+            Dim dataAdapter As New Npgsql.NpgsqlDataAdapter
+            Dim cmdBuilder As New Npgsql.NpgsqlCommandBuilder(dataAdapter)
+            While retry
+                Try
+                    Debug.WriteLine("SendTable query executed.")
+                    dataAdapter.InsertCommand = cmdBuilder.GetInsertCommand()
+                    dataAdapter.UpdateCommand = cmdBuilder.GetUpdateCommand()
+                    dataAdapter.DeleteCommand = cmdBuilder.GetDeleteCommand()
+                    dataAdapter.Update(table)
+                    retry = False
+                Catch ex As Exception
+                    resultDialog = MessageBox.Show("There was an error. Please try again.",
+                                                   "Database Send Error",
+                                                   MessageBoxButtons.RetryCancel,
+                                                   MessageBoxIcon.Error)
+                    Debug.WriteLine("SQL SendTable error: " & ex.ToString)
                     If resultDialog = DialogResult.Retry Then
                         retry = True
                     Else

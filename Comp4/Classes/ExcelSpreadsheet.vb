@@ -10,7 +10,7 @@ Public Class ExcelSpreadsheet
 
     Public Sub New()
         'Get list of headers from our options
-        excelHeaderList = frmMain.myOptions.Headers
+        excelHeaderList = myOptions.Headers
     End Sub
 
     ''' <summary>
@@ -24,15 +24,16 @@ Public Class ExcelSpreadsheet
         XLwb = XLap.Workbooks.Open(filepath)
         XLsh = XLap.ActiveSheet
         'Set up our temp datatable - deliberately leave out pieceid column(0)
-        For i = 0 To frmMain.myMusic.musicDataTable.Columns.Count - 1
-            tempDataTable.Columns.Add(frmMain.myMusic.musicDataTable.Columns(i).ColumnName)
+        For i = 0 To myMusic.musicDataTable.Columns.Count - 1
+            tempDataTable.Columns.Add(myMusic.musicDataTable.Columns(i).ColumnName)
         Next
         While Not XLsh.Cells(rowIndex, 1).text.ToString = ""
             For colIndex = 0 To numHeaders
                 tempDataRow.Add(XLsh.Cells(rowIndex, colIndex + 1).value)
             Next
-            tempDataTable.Rows.Add(tempDataRow)
+            tempDataTable.Rows.Add(tempDataRow.ToArray)
             rowIndex += 1
+            tempDataRow.Clear()
         End While
         Return tempDataTable
     End Function

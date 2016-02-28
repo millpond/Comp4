@@ -123,9 +123,9 @@ Public Class Options 'Develop this later
 
     Sub New()
         options = New Dictionary(Of String, Object)
-        If Not My.Computer.FileSystem.FileExists("ElizabethLibrary.ELconfig") Then
-            PopulateNewOptions()
-        End If
+        'If Not My.Computer.FileSystem.FileExists("ElizabethLibrary.ELconfig") Then
+        '    PopulateNewOptions()
+        'End If
         GetOptionsFromFile()
     End Sub
 
@@ -137,13 +137,8 @@ Public Class Options 'Develop this later
             strBuilder = String.Format("[{0}] = {1}", element.Key, element.Value)
             finalWriteList.Add(strBuilder)
         Next
-        'Check to see if config file exists - if not, create
-        If Not My.Computer.FileSystem.FileExists("ElizabethLibrary.ELconfig") Then
-            Dim fileStream As FileStream = File.Create("ElizabethLibrary.ELconfig")
-            fileStream.Close()
-        End If
         'Write
-        File.WriteAllLines("ElizabethLibrary.ELconfig", finalWriteList.ToArray)
+        File.WriteAllLines(configFile, finalWriteList.ToArray)
     End Sub
 
     Sub GetOptionsFromFile()
@@ -152,12 +147,7 @@ Public Class Options 'Develop this later
         Dim initWriteList As List(Of String)
         Dim i As Integer
         Dim key, value As String
-        initWriteList = File.ReadAllLines("ElizabethLibrary.ELconfig").ToList
-        'Check it exists
-        If Not My.Computer.FileSystem.FileExists("ElizabethLibrary.ELconfig") Then
-            Dim fileStream As FileStream = File.Create("ElizabethLibrary.ELconfig")
-            fileStream.Close()
-        End If
+        initWriteList = File.ReadAllLines(configFile).ToList
         'Decode
         Try
             For Each element In initWriteList
@@ -204,17 +194,17 @@ Public Class Options 'Develop this later
         Return stringList
     End Function
 
-    Sub PopulateNewOptions()
-        options.Add("SQL Connection", ConnectionAddress)
-        options.Add("SQL Port", ConnectionPort)
-        options.Add("SQL Username", ConnectionUsername)
-        options.Add("SQL Password", ConnectionPassword)
-        options.Add("Excel Headers", HeaderString)
-        options.Add("Score Type Enum", ScoreTypeEnumString)
-        options.Add("Music Type Enum", MusicTypeEnumString)
-        options.Add("Music Status Enum", MusicStatusEnumString)
-        WriteOptionsToFile()
-    End Sub
+    'Sub PopulateNewOptions()
+    '    options.Add("SQL Connection", ConnectionAddress)
+    '    options.Add("SQL Port", ConnectionPort)
+    '    options.Add("SQL Username", ConnectionUsername)
+    '    options.Add("SQL Password", ConnectionPassword)
+    '    options.Add("Excel Headers", HeaderString)
+    '    options.Add("Score Type Enum", ScoreTypeEnumString)
+    '    options.Add("Music Type Enum", MusicTypeEnumString)
+    '    options.Add("Music Status Enum", MusicStatusEnumString)
+    '    WriteOptionsToFile()
+    'End Sub
 
     Sub DepopulateOptionsList()
         ConnectionAddress = options("SQL Connection")

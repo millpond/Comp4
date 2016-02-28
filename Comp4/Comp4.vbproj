@@ -76,6 +76,8 @@
     <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
+    <Import Include="Comp4" />
+    <Import Include="Comp4.My" />
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
     <Import Include="System.Collections" />
@@ -89,29 +91,29 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cryptography.vb" />
-    <Compile Include="Definitions.vb" />
-    <Compile Include="frmImport.Designer.vb">
+    <Compile Include="Classes\Cryptography.vb" />
+    <Compile Include="Classes\Definitions.vb" />
+    <Compile Include="Forms\frmImport.Designer.vb">
       <DependentUpon>frmImport.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmImport.vb">
+    <Compile Include="Forms\frmImport.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.vb">
+    <Compile Include="Forms\frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.vb">
+    <Compile Include="Forms\frmLogin.Designer.vb">
       <DependentUpon>frmLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.vb">
+    <Compile Include="Forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.vb">
+    <Compile Include="Forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LocalMusic.vb" />
-    <Compile Include="DEPRECATEDMusicPiece.vb" />
+    <Compile Include="Classes\LocalMusic.vb" />
+    <Compile Include="Misc\DEPRECATEDMusicPiece.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -127,19 +129,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Notes.vb" />
-    <Compile Include="Options.vb" />
-    <Compile Include="PostgreSQL.vb" />
-    <Compile Include="ExcelSpreadsheet.vb" />
+    <Compile Include="Classes\Notes.vb" />
+    <Compile Include="Classes\Options.vb" />
+    <Compile Include="Classes\PostgreSQL.vb" />
+    <Compile Include="Classes\ExcelSpreadsheet.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmImport.resx">
+    <EmbeddedResource Include="Forms\frmImport.resx">
       <DependentUpon>frmImport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="Forms\frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -159,8 +161,8 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="Misc\App.config" />
+    <None Include="Misc\packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -206,6 +208,10 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ELConfig.txt" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
